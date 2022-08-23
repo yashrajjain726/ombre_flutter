@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:ombre_flutter/services/firbase_service.dart';
 
 import '../constants/colors.constants.dart';
@@ -17,6 +18,7 @@ class _SearchScreenState extends State<SearchScreen> {
   late TextEditingController _searchInputController;
   FirebaseService firebaseService = FirebaseService();
   List<EventModel> eventList = [];
+  String searchVal = "";
   @override
   void initState() {
     super.initState();
@@ -29,12 +31,38 @@ class _SearchScreenState extends State<SearchScreen> {
     _searchInputController.dispose();
   }
 
+  searchCardWidget(data) {
+    return ListTile(
+      title: Text(data['song_type'],
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: GoogleFonts.quicksand(
+            textStyle: TextStyle(
+                color: primaryColor,
+                fontSize: 14,
+                fontWeight: FontWeight.normal),
+          )),
+      subtitle: Text(
+        data['event_name'],
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: GoogleFonts.josefinSans(
+            textStyle: TextStyle(
+                color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold)),
+      ),
+      leading: Image.network(
+        data['image_url'],
+        width: 75,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: PreferredSize(
-              preferredSize: Size.fromHeight(100),
+              preferredSize: const Size.fromHeight(100),
               child: Column(
                 children: [
                   const SizedBox(
@@ -46,6 +74,12 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 10),
                           child: TextFormField(
+                            controller: _searchInputController,
+                            onChanged: (value) {
+                              setState(() {
+                                searchVal = value;
+                              });
+                            },
                             keyboardType: TextInputType.text,
                             style: TextStyle(color: whiteColor, fontSize: 13),
                             decoration: InputDecoration(
@@ -62,7 +96,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(60),
                                     borderSide: const BorderSide()),
-                                enabledBorder: OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(60),
                                     borderSide: const BorderSide())),
                           ),
@@ -99,70 +133,21 @@ class _SearchScreenState extends State<SearchScreen> {
                       color: whiteColor,
                     );
                   }
-                  return ListView(
-                    children: snapshot.data!.docs
-                        .map((DocumentSnapshot document) {
-                          Map<String, dynamic> data =
-                              document.data()! as Map<String, dynamic>;
-                          return Container(
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
-                            height: 100,
-                            child: Row(
-                              children: [
-                                ((data['image_url'] != null) &&
-                                        (data['image_url'] != ''))
-                                    ? Image.network(
-                                        data['image_url'],
-                                        width: 100,
-                                      )
-                                    : const SizedBox(),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ((data['event_name'] != null) &&
-                                              (data['event_name'] != ''))
-                                          ? Text(
-                                              data['event_name'],
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                  color: primaryColor,
-                                                  fontSize: 20),
-                                            )
-                                          : const SizedBox(),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      ((data['event_performer_name'] != null) &&
-                                              (data['event_performer_name'] !=
-                                                  ''))
-                                          ? Text(
-                                              data['event_performer_name'],
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
-                                              style: TextStyle(
-                                                color: whiteColor,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 18,
-                                              ),
-                                            )
-                                          : SizedBox()
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          );
-                        })
-                        .toList()
-                        .cast(),
+
+                  return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      var data = snapshot.data!.docs[index].data()
+                          as Map<String, dynamic>;
+                      bool searchContains = data['event_name']
+                          .toString()
+                          .toLowerCase()
+                          .contains(searchVal.toLowerCase());
+                      if (searchVal.isEmpty || searchContains) {
+                        return searchCardWidget(data);
+                      }
+                      return Container();
+                    },
                   );
                 }),
           )),

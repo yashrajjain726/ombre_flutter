@@ -35,7 +35,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
       body: screens[_currentTabIndex],
       bottomNavigationBar: CurvedNavigationBar(
         buttonBackgroundColor: primaryColor,
-        backgroundColor: blackColor,
+        backgroundColor: Colors.transparent,
         color: secondaryColor,
         height: 65,
         items: icons,
