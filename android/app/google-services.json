@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "182112957921",
+    "project_id": "ombre-backend",
+    "storage_bucket": "ombre-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182112957921:android:f2a0eeb4058a074227cea0",
+        "android_client_info": {
+          "package_name": "com.example.ombre_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182112957921-ccvftgl0coaijvccg1n1s29d3j6fs901.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIb1dW8nRIn4A4an5rQHoQKJwVC-EF8Hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182112957921-ccvftgl0coaijvccg1n1s29d3j6fs901.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

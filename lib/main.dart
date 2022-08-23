@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ombre_flutter/constants/colors.constants.dart';
 import 'package:ombre_flutter/dashboard_screen.dart';
@@ -6,7 +7,9 @@ import 'package:ombre_flutter/screens/home_screen.dart';
 import 'package:ombre_flutter/screens/search_screen.dart';
 import 'package:ombre_flutter/screens/trending_artist_screen.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const Main());
 }
 
