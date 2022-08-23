@@ -6,6 +6,8 @@ import 'package:ombre_flutter/screens/home_screen.dart';
 import 'package:ombre_flutter/screens/search_screen.dart';
 import 'package:ombre_flutter/screens/trending_artist_screen.dart';
 
+import 'constants/size.constants.dart';
+
 class DashBoardScreen extends StatefulWidget {
   static const screenId = 'dashboard_screen';
   const DashBoardScreen({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
         buttonBackgroundColor: primaryColor,
         backgroundColor: Colors.transparent,
         color: secondaryColor,
-        height: 65,
+        height: size65,
         items: icons,
         index: _currentTabIndex,
         onTap: (index) {

@@ -2,9 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ombre_flutter/services/firbase_service.dart';
-
 import '../constants/colors.constants.dart';
-import '../models/event_model.dart';
+import '../constants/size.constants.dart';
 
 class SearchScreen extends StatefulWidget {
   static const screenId = 'search_screen';
@@ -17,7 +16,6 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   late TextEditingController _searchInputController;
   FirebaseService firebaseService = FirebaseService();
-  List<EventModel> eventList = [];
   String searchVal = "";
   @override
   void initState() {
@@ -39,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
           style: GoogleFonts.quicksand(
             textStyle: TextStyle(
                 color: primaryColor,
-                fontSize: 14,
+                fontSize: size14,
                 fontWeight: FontWeight.normal),
           )),
       subtitle: Text(
@@ -47,12 +45,16 @@ class _SearchScreenState extends State<SearchScreen> {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: GoogleFonts.josefinSans(
-            textStyle: TextStyle(
-                color: whiteColor, fontSize: 16, fontWeight: FontWeight.bold)),
+          textStyle: TextStyle(
+            color: whiteColor,
+            fontSize: size16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       leading: Image.network(
         data['image_url'],
-        width: 75,
+        width: size75,
       ),
     );
   }
@@ -65,14 +67,14 @@ class _SearchScreenState extends State<SearchScreen> {
               preferredSize: const Size.fromHeight(100),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 30,
+                  SizedBox(
+                    height: size30,
                   ),
                   Row(
                     children: [
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 10),
+                          margin: EdgeInsets.symmetric(horizontal: size10),
                           child: TextFormField(
                             controller: _searchInputController,
                             onChanged: (value) {
@@ -81,31 +83,32 @@ class _SearchScreenState extends State<SearchScreen> {
                               });
                             },
                             keyboardType: TextInputType.text,
-                            style: TextStyle(color: whiteColor, fontSize: 13),
+                            style:
+                                TextStyle(color: whiteColor, fontSize: size13),
                             decoration: InputDecoration(
                                 filled: true,
                                 fillColor: secondaryColor,
-                                contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 15,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: size10,
+                                  horizontal: size15,
                                 ),
                                 hintText:
                                     'Search your favourite artist, events ..',
-                                hintStyle:
-                                    TextStyle(color: greyColor, fontSize: 13),
+                                hintStyle: TextStyle(
+                                    color: greyColor, fontSize: size13),
                                 border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(60),
-                                    borderSide: const BorderSide()),
+                                  borderRadius: BorderRadius.circular(size60),
+                                ),
                                 focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(60),
-                                    borderSide: const BorderSide())),
+                                  borderRadius: BorderRadius.circular(size60),
+                                )),
                           ),
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(right: 10),
+                        margin: EdgeInsets.only(right: size10),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(60),
+                          borderRadius: BorderRadius.circular(size60),
                           color: secondaryColor,
                         ),
                         child: IconButton(
