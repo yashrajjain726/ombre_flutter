@@ -1,16 +1,21 @@
-# ombre_flutter
+# Ombre Assignment 
+    
+## Features
+- Building Bottom Navigation Bar
+- Fetching Data From Firebase
+- Adding multiple search query params and filtering of data
+- Structuring the app dynamics and constants
+- 
+For Video : [Click Here](https://drive.google.com/file/d/1bRQ3VwlcT7sAy-MWuGzqEzPOOGwDDo7V/view?usp=sharing) 
+<br>
+<br>
+For Apk : [Click Here](https://drive.google.com/file/d/1xdy-dn2v8mmUAkIkMFyxhXrT-JQTfjTt/view?usp=sharing)
+- 
+## 📱 Screenshots
+|                                                     Listing Screen                                                      |                                                   Query Test One                                                   |
+|:----------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------:|
+| ![](https://github.com/yashrajjain726/ombre_flutter/blob/master/screenshots/rendering_list.jpg?raw=true) | ![](https://github.com/yashrajjain726/ombre_flutter/blob/master/screenshots/search_query_one.jpg?raw=true) |
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+|                                          Query Test Two                                           |                                                  Query Test Three                                                  |
+|:------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
+| ![](https://github.com/yashrajjain726/ombre_flutter/blob/master/screenshots/search_query_two.jpg?raw=true) | ![](https://github.com/yashrajjain726/ombre_flutter/blob/master/screenshots/search_query_three.jpg?raw=true) |
